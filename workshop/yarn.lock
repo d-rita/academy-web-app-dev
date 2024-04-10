@@ -2234,7 +2234,7 @@
   resolved "https://registry.yarnpkg.com/@dhis2/ui-icons/-/ui-icons-9.4.3.tgz#b7eac309031351003d0afdde31e5bbe15de928d0"
   integrity sha512-6o6L9gfWGLPlB35aBzyU13v6qGE+f2Xk1Xmt68fhqzcAqBj7e1UZ+XIQPb7b3bQlv2AWftWBhUGaMJJIlddtZg==
 
-"@dhis2/ui@^9.2.0":
+"@dhis2/ui@^9.2.0", "@dhis2/ui@^9.4.3":
   version "9.4.3"
   resolved "https://registry.yarnpkg.com/@dhis2/ui/-/ui-9.4.3.tgz#2b8606a1cf806750c075873086cb3bae3efa5c28"
   integrity sha512-0U47fkp+5Ree3k8MdhhFvuBiYmWWiRGv46BWGg27yGBQOGeCoBMNsDTE+nZfRW0op2aW/okOloNneeter0K52w==
