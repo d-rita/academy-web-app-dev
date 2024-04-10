@@ -1,4 +1,16 @@
-import { ReactFinalForm } from '@dhis2/ui'
+import {
+    Button,
+    InputFieldFF,
+    ReactFinalForm,
+    SwitchFieldFF,
+    SingleSelectFieldFF,
+    dhis2Username,
+    hasValue,
+    composeValidators,
+    dhis2Password,
+    email,
+    createEqualTo,
+} from '@dhis2/ui'
 import React from 'react'
 import styles from './Form.module.css'
 
@@ -12,7 +24,7 @@ import styles from './Form.module.css'
  * @param {string} values.surname
  * @param {string} values.firstname
  * @param {string} values.email
- * @param {string} values.email-confirmation
+ * @param {string} values.confirm_email
  * @param {bool} values.newsletter
  */
 const alertValues = (values) => {
@@ -31,12 +43,86 @@ export const Form = () => (
                 <form onSubmit={handleSubmit}>
                     <div className={styles.row}>
                         <Field
-                            name="surname"
-                            label="Surname"
-                            component={'input'}
-                            className={styles.surname}
-                            initialValue={'Traore'}
+                            name="title"
+                            label="Title *"
+                            component={SingleSelectFieldFF}
+                            className={styles.title}
+                            options={
+                                [
+                                    { label: 'None', value: 'None' },
+                                    { label: 'Doctor', value: 'Dr' },
+                                    { label: 'Professor', value: 'Prof' },
+                                ]
+                            }
+                            initialValue={'None'}
+                            validate={hasValue}
                         />
+                    </div>
+                    <div className={styles.row}>
+                        <Field
+                            name="surname"
+                            label="Surname *"
+                            component={InputFieldFF}
+                            className={styles.surname}
+                            validate={hasValue}
+                        />
+                        <Field
+                            name="firstname"
+                            label="First Name *"
+                            component={InputFieldFF}
+                            className={styles.firstname}
+                            validate={hasValue}
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <Field
+                            name="username"
+                            label="Username *"
+                            component={InputFieldFF}
+                            className={styles.field}
+                            validate={composeValidators(hasValue, dhis2Username)}
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <Field
+                            name="password"
+                            label="Password *"
+                            component={InputFieldFF}
+                            className={styles.field}
+                            type='password'
+                            validate={composeValidators(hasValue, dhis2Password)}
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <Field
+                            name="email"
+                            label="Email Address *"
+                            component={InputFieldFF}
+                            className={styles.email}
+                            validate={composeValidators(hasValue, email)}
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <Field
+                            name="confirm_email"
+                            label="Confirm Email Address *"
+                            component={InputFieldFF}
+                            className={styles.field}
+                            validate={composeValidators(hasValue, email, createEqualTo("email", "the provided email address"))}
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <Field
+                            name="newsletter"
+                            label="I want to receive the newsletter"
+                            component={SwitchFieldFF}
+                            className={styles.field}
+                            type='checkbox'
+                            initialValue={false}
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <Button primary type='submit'>Submit form</Button>
                     </div>
                 </form>
             )}
