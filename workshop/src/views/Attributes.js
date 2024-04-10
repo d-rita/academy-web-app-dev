@@ -1,3 +1,15 @@
+import {
+    Center,
+    CircularLoader,
+    NoticeBox,
+    Table,
+    TableBody,
+    TableCell,
+    TableCellHead,
+    TableHead,
+    TableRow,
+    TableRowHead,
+} from '@dhis2/ui'
 import React from 'react'
 import { useGetAttributes } from '../hooks/index.js'
 
@@ -9,14 +21,33 @@ export const Attributes = () => {
     return (
         <div>
             <h1>Attributes</h1>
-            <p>loading: {JSON.stringify(loading)}</p>
-            <p>error message: {error?.message}</p>
+            {loading && (
+                <Center>
+                    <CircularLoader />
+                </Center>
+            )}
+            {!loading && error && <NoticeBox error>{error.message}</NoticeBox>}
             {
                 // if there is any data available
-                data?.attributes?.attributes && (
-                    <pre>
-                        {JSON.stringify(data.attributes.attributes, null, 4)}
-                    </pre>
+                !loading && !error && data?.attributes?.attributes && (
+                    <Table>
+                        <TableHead>
+                            <TableRowHead>
+                                <TableCellHead>Name</TableCellHead>
+                                <TableCellHead>Unique</TableCellHead>
+                            </TableRowHead>
+                        </TableHead>
+                        <TableBody>
+                            {data.attributes.attributes.map((item) => (
+                                <TableRow key={item.id}>
+                                    <TableCell>{item.displayName}</TableCell>
+                                    <TableCell>
+                                        {item.unique === true ? 'Yes' : 'No'}
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 )
             }
         </div>
