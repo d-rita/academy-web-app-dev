@@ -1,3 +1,4 @@
+import { useAlert } from '@dhis2/app-runtime'
 import {
     Button,
     InputFieldFF,
@@ -12,6 +13,7 @@ import {
     createEqualTo,
 } from '@dhis2/ui'
 import React from 'react'
+import i18n from '../locales/index.js'
 import styles from './Form.module.css'
 
 /**
@@ -27,105 +29,146 @@ import styles from './Form.module.css'
  * @param {string} values.confirm_email
  * @param {bool} values.newsletter
  */
-const alertValues = (values) => {
-    const formattedValuesString = JSON.stringify(values, null, 2)
-    alert(formattedValuesString)
-}
 
 const { Field, Form: RFForm } = ReactFinalForm
 
-export const Form = () => (
-    <div>
-        <h1>Form</h1>
+export const Form = () => {
+    const { show } = useAlert(
+        ({ message }) => message,
+        ({ status }) =>
+            status === 'error' ? { critical: true } : { success: true }
+    )
 
-        <RFForm onSubmit={alertValues}>
-            {({ handleSubmit }) => (
-                <form onSubmit={handleSubmit}>
-                    <div className={styles.row}>
-                        <Field
-                            name="title"
-                            label="Title *"
-                            component={SingleSelectFieldFF}
-                            className={styles.title}
-                            options={
-                                [
-                                    { label: 'None', value: 'None' },
-                                    { label: 'Doctor', value: 'Dr' },
-                                    { label: 'Professor', value: 'Prof' },
-                                ]
-                            }
-                            initialValue={'None'}
-                            validate={hasValue}
-                        />
-                    </div>
-                    <div className={styles.row}>
-                        <Field
-                            name="surname"
-                            label="Surname *"
-                            component={InputFieldFF}
-                            className={styles.surname}
-                            validate={hasValue}
-                        />
-                        <Field
-                            name="firstname"
-                            label="First Name *"
-                            component={InputFieldFF}
-                            className={styles.firstname}
-                            validate={hasValue}
-                        />
-                    </div>
-                    <div className={styles.row}>
-                        <Field
-                            name="username"
-                            label="Username *"
-                            component={InputFieldFF}
-                            className={styles.field}
-                            validate={composeValidators(hasValue, dhis2Username)}
-                        />
-                    </div>
-                    <div className={styles.row}>
-                        <Field
-                            name="password"
-                            label="Password *"
-                            component={InputFieldFF}
-                            className={styles.field}
-                            type='password'
-                            validate={composeValidators(hasValue, dhis2Password)}
-                        />
-                    </div>
-                    <div className={styles.row}>
-                        <Field
-                            name="email"
-                            label="Email Address *"
-                            component={InputFieldFF}
-                            className={styles.email}
-                            validate={composeValidators(hasValue, email)}
-                        />
-                    </div>
-                    <div className={styles.row}>
-                        <Field
-                            name="confirm_email"
-                            label="Confirm Email Address *"
-                            component={InputFieldFF}
-                            className={styles.field}
-                            validate={composeValidators(hasValue, email, createEqualTo("email", "the provided email address"))}
-                        />
-                    </div>
-                    <div className={styles.row}>
-                        <Field
-                            name="newsletter"
-                            label="I want to receive the newsletter"
-                            component={SwitchFieldFF}
-                            className={styles.field}
-                            type='checkbox'
-                            initialValue={false}
-                        />
-                    </div>
-                    <div className={styles.row}>
-                        <Button primary type='submit'>Submit form</Button>
-                    </div>
-                </form>
-            )}
-        </RFForm>
-    </div>
-)
+    const onSubmit = (values) => {
+        let error = new Error('Something went wrong! Try again')
+        error = undefined
+        if (error) {
+            show({ message: error.message, status: 'error' })
+        } else {
+            show({
+                message: `Form submitted: ${JSON.stringify(values, null, 2)}`,
+                status: 'success',
+            })
+        }
+    }
+    return (
+        <div>
+            <h1>{i18n.t('Form')}</h1>
+
+            <RFForm onSubmit={onSubmit}>
+                {({ handleSubmit }) => (
+                    <form onSubmit={handleSubmit}>
+                        <div className={styles.row}>
+                            <Field
+                                required
+                                name="title"
+                                label={i18n.t('Title')}
+                                component={SingleSelectFieldFF}
+                                className={styles.title}
+                                options={[
+                                    { label: i18n.t('None'), value: 'None' },
+                                    { label: i18n.t('Doctor'), value: 'Dr' },
+                                    {
+                                        label: i18n.t('Professor'),
+                                        value: 'Prof',
+                                    },
+                                ]}
+                                initialValue={'None'}
+                                validate={hasValue}
+                            />
+                        </div>
+                        <div className={styles.row}>
+                            <Field
+                                required
+                                name="surname"
+                                label={i18n.t('Surname')}
+                                component={InputFieldFF}
+                                className={styles.surname}
+                                validate={hasValue}
+                            />
+                            <Field
+                                required
+                                name="firstname"
+                                label={i18n.t('First Name')}
+                                component={InputFieldFF}
+                                className={styles.firstname}
+                                validate={hasValue}
+                            />
+                        </div>
+                        <div className={styles.row}>
+                            <Field
+                                required
+                                name="username"
+                                label={i18n.t('Username')}
+                                component={InputFieldFF}
+                                className={styles.field}
+                                validate={composeValidators(
+                                    hasValue,
+                                    dhis2Username
+                                )}
+                            />
+                        </div>
+                        <div className={styles.row}>
+                            <Field
+                                required
+                                name="password"
+                                label={i18n.t('Password')}
+                                component={InputFieldFF}
+                                className={styles.field}
+                                type="password"
+                                validate={composeValidators(
+                                    hasValue,
+                                    dhis2Password
+                                )}
+                            />
+                        </div>
+                        <div className={styles.row}>
+                            <Field
+                                required
+                                name="email"
+                                label={i18n.t('Email Address')}
+                                component={InputFieldFF}
+                                className={styles.email}
+                                validate={composeValidators(hasValue, email)}
+                            />
+                        </div>
+                        <div className={styles.row}>
+                            <Field
+                                required
+                                name="confirm_email"
+                                label={i18n.t('Confirm Email Address')}
+                                component={InputFieldFF}
+                                className={styles.field}
+                                validate={composeValidators(
+                                    hasValue,
+                                    email,
+                                    createEqualTo(
+                                        'email',
+                                        i18n.t('the provided email address')
+                                    )
+                                )}
+                            />
+                        </div>
+                        <div className={styles.row}>
+                            <Field
+                                name="newsletter"
+                                label={i18n.t(
+                                    'I want to receive the newsletter'
+                                )}
+                                component={SwitchFieldFF}
+                                className={styles.field}
+                                type="checkbox"
+                                initialValue={false}
+                            />
+                        </div>
+                        <div className={styles.row}>
+                            <Button primary type="submit">
+                                {i18n.t('Submit form')}
+                            </Button>
+                        </div>
+                    </form>
+                )}
+            </RFForm>
+        </div>
+    )
+}

@@ -14,11 +14,10 @@ const NavigationItem = ({ path, label }) => {
     // eslint-disable-next-line no-unused-vars
     const isActive = Boolean(routeMatch)
 
-    // eslint-disable-next-line no-unused-vars
     const onClick = () => navigate(path)
 
     // @TODO: Use the `MenuItem` component instead of the `div`
-    return <MenuItem label={label} onClick={onClick}/>
+    return <MenuItem label={label} onClick={onClick} />
 }
 
 NavigationItem.propTypes = {

@@ -71,7 +71,6 @@ export const useGetAttributes = () => {
     const error = null
     // error = new Error('Server Timeout') - simulate error
     const data = ATTRIBUTES
-    
 
     useEffect(() => {
         const delayLoading = async () => {

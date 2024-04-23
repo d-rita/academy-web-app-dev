@@ -5,11 +5,101 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2024-04-10T02:03:39.761Z\n"
-"PO-Revision-Date: 2024-04-10T02:03:39.761Z\n"
+"POT-Creation-Date: 2024-04-18T11:36:06.152Z\n"
+"PO-Revision-Date: 2024-04-18T11:36:06.152Z\n"
+
+msgid "Attributes"
+msgstr "Attributes"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Unique"
+msgstr "Unique"
+
+msgid "Value Type"
+msgstr "Value Type"
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Form"
+msgstr "Form"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "None"
+msgstr "None"
+
+msgid "Doctor"
+msgstr "Doctor"
+
+msgid "Professor"
+msgstr "Professor"
+
+msgid "Surname"
+msgstr "Surname"
+
+msgid "First Name"
+msgstr "First Name"
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Confirm Email Address"
+msgstr "Confirm Email Address"
+
+msgid "the provided email address"
+msgstr "the provided email address"
+
+msgid "I want to receive the newsletter"
+msgstr "I want to receive the newsletter"
+
+msgid "Submit form"
+msgstr "Submit form"
 
 msgid "Home"
 msgstr "Home"
 
 msgid "DHIS2 Web App Academy 2024"
 msgstr "DHIS2 Web App Academy 2024"
+
+msgid "Rename Attribute?"
+msgstr "Rename Attribute?"
+
+msgid "Add an attribute"
+msgstr "Add an attribute"
+
+msgid "Attribute name"
+msgstr "Attribute name"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Previous"
+msgstr "Previous"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Page"
+msgstr "Page"
+
+msgid "Items per page"
+msgstr "Items per page"
+
+msgid "Attribute Details"
+msgstr "Attribute Details"
