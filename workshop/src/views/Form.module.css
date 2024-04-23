@@ -22,3 +22,7 @@
 .email {
     flex-grow: 1;
 }
+
+.field {
+    flex-grow: 1;
+}

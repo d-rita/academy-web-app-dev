@@ -69,6 +69,7 @@ const sleep = (ms) => {
 export const useGetAttributes = () => {
     const [loading, setLoading] = useState(true)
     const error = null
+    // error = new Error('Server Timeout') - simulate error
     const data = ATTRIBUTES
 
     useEffect(() => {

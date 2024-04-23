@@ -1,0 +1,15 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2024-04-10T02:03:39.761Z\n"
+"PO-Revision-Date: 2024-04-10T02:03:39.761Z\n"
+
+msgid "Home"
+msgstr "Nyumbani"
+
+msgid "DHIS2 Web App Academy 2024"
+msgstr "Chuo Cha Wavuti Cha DHIS2 Cha 2024"
