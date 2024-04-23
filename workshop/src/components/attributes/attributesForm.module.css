@@ -1,0 +1,11 @@
+.row {
+  display: flex;
+}
+
+.row + .row {
+  margin-top: 16px;
+}
+
+.field {
+  flex-grow: 1;
+}
